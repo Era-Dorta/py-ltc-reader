@@ -8,4 +8,4 @@ def main(wav_file_path: Path) -> None:
     ltc_reader.decode_ltc(raw_data)
 
 if __name__ == "__main__":
-    main(Path("/home/era/Music/fireface-test/audio-data/01-241205_1405.wav"))
+    main(Path("./data/01-241205_1405.wav"))
