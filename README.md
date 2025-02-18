@@ -6,7 +6,7 @@ LTC stands for Linear Timecode and is a signal used in media production to time 
 
 LTC is an analog audio signal and because of it can be easily transmitted among stations.
 
-As faster your sound card driver is, minor is the jam interval.
+The faster your sound card driver is, the minor the jam interval is.
 
 This script needs some improvements, but the main feature (read timecode) is working perfectly.
 
