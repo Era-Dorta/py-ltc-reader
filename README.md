@@ -12,7 +12,18 @@ This script needs some improvements, but the main feature (read timecode) is wor
 
 ## Usage
 
-Import module in your script and call `start_read_ltc()`
+Call the `decode_ltc` method, like so
 
+```python
     import ltc_reader
-    ltc_reader.start_read_ltc()
+    from pathlib import Path
+
+    def main(wav_file_path: Path) -> None:
+        with wav_file_path.open("rb") as f:
+            raw_data = f.read()
+
+        ltc_reader.decode_ltc(raw_data)
+
+    if __name__ == "__main__":
+        main(Path("a_file_with_LTC_signal.wav"))
+```
