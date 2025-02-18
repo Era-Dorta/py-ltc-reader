@@ -4,6 +4,7 @@ import audioop
 import time
 import threading
 import os
+from pathlib import Path
 #113,119,101
 
 
@@ -81,7 +82,6 @@ def print_tc():
             h,m,s,f = [int(x) for x in jam.split(':')]
             last_jam = jam
         tcp = "{:02d}:{:02d}:{:02d}:{:02d}".format(h,m,s,f)
-        os.system('clear')
         print(tcp)
         now_tc = tcp
         time.sleep(inter)
@@ -130,33 +130,10 @@ def decode_ltc(wave_frames):
                         if len(output) > 80:
                             frames.append(output[-80:])
                             output = ''
-                            os.system('clear')
-                            print('Jam received:',decode_frame(frames[-1])['formatted_tc'])
+                            print('Jam received:', decode_frame(frames[-1])['formatted_tc'])
                             jam = decode_frame(frames[-1])['formatted_tc']
+                            print_tc()
             sp = 1
             last = cyc
         else:
             sp += 1
-def start_read_ltc():
-    t = threading.Thread(target=print_tc)
-    t.start()
-    p = pyaudio.PyAudio()
-    stream = p.open(format=FORMAT,
-                    channels=CHANNELS,
-                    rate=RATE,
-                    input=True,
-                    frames_per_buffer=CHUNK)
-    print("Capturando LTC")
-    frames = []
-    try:
-        while True:
-            data = stream.read(CHUNK)
-            decode_ltc(data)
-            frames.append(data)
-    except:
-        jam = None
-        print("Programa fechado")
-        input()
-        stream.stop_stream()
-        stream.close()
-        p.terminate()
