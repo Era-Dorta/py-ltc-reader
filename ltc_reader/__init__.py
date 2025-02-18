@@ -1,15 +1,9 @@
-import pyaudio
-import wave
 import audioop
 import time
-import threading
-import os
-from pathlib import Path
 #113,119,101
 
 
 CHUNK = 2048
-FORMAT = pyaudio.paInt16
 CHANNELS = 1
 RATE = 48000
 SYNC_WORD = '0011111111111101'
